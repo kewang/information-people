@@ -1,5 +1,41 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  .container
+    .row
+      .col-md-8
+        .panel.panel-primary(ng-repeat="")
+          .panel-heading 王慕群
+          .panel-body
+            .media
+              .media-left
+                a(href="#")
+                  img.media-object(src="http://placehold.it/128x128", alt="...")
+              .media-body
+                ul
+                  li(ng-repeat="") abc
+                  li
+                    .input-group
+                      input.form-control(type="text", placeholder="新增個人資料...")
+                      span.input-group-btn
+                        button.btn.btn-primary(type="button") Add
+      .col-md-4
+        .panel.panel-default
+          .panel-heading
+            .input-group
+              input.form-control(type="text", placeholder="新增資訊人...")
+              span.input-group-btn
+                button.btn.btn-default(type="button") Add
+          .panel-body
+            .media
+              .media-left
+                a(href="#")
+                  img.media-object(src="http://placehold.it/128x128", alt="...")
+              .media-body
+                ul
+                  li(ng-repeat="") abc
+                  li
+                    .input-group
+                      input.form-control(type="text", placeholder="新增個人資料...")
+                      span.input-group-btn
+                        button.btn.btn-default(type="button") Add
