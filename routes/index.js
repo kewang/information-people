@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 router.post('/issues', function(req, res, next) {
-  return res.end(req);
+  return res.json(req.body);
 });
 
 module.exports = router;
