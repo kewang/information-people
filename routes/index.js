@@ -1,9 +1,10 @@
 var express = require('express');
 var Git = require("nodegit");
 var router = express.Router();
+var token = process.env.GITHUB_TOKEN;
 
 router.post('/issues', function(req, res, next) {
-  Git.Clone("https://github.com/kewang/information-people", "./tmp", {
+  Git.Clone("https://" + token + ":x-oauth-basic@github.com/kewang/information-people", "./tmp", {
     checkoutBranch: "gh-pages"
   }).then(function(repo){
     console.log("getHeadCommit");
