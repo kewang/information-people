@@ -1,9 +1,12 @@
 var express = require('express');
 var Git = require("nodegit");
 var fs = require('fs');
+var promisify = require("promisify-node");
+var fse = promisify(require("fs-extra"));
 var router = express.Router();
 var GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 var FILE_NAME = "index.htm";
+var FOLDER_NAME = "./tmp";
 var BRANCH_NAME = "gh-pages";
 var REFS = "refs/heads/" + BRANCH_NAME;
 var repo;
@@ -11,8 +14,10 @@ var head;
 var oid;
 
 router.post('/issues', function(req, res, next) {
-  Git.Clone("https://" + GITHUB_TOKEN + ":x-oauth-basic@github.com/kewang/information-people", "./tmp", {
-    checkoutBranch: BRANCH_NAME
+  fse.remove(FOLDER_NAME).then(function(){
+    return Git.Clone("https://" + GITHUB_TOKEN + ":x-oauth-basic@github.com/kewang/information-people", FOLDER_NAME, {
+      checkoutBranch: BRANCH_NAME
+    });
   }).then(function(repoResult){
     repo = repoResult;
 
@@ -21,7 +26,7 @@ router.post('/issues', function(req, res, next) {
     return repo.getHeadCommit();
   }).then(function(headResult){
     head = headResult;
-    
+
     console.log("getEntry");
 
     return head.getEntry(FILE_NAME);
@@ -34,7 +39,7 @@ router.post('/issues', function(req, res, next) {
 
     addPeople(content, req.body);
 
-    fs.writeFileSync("./tmp/" + FILE_NAME, content);
+    fs.writeFileSync(FOLDER_NAME + "/" + FILE_NAME, content);
 
     return repo.index();
   }).then(function(index){
