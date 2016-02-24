@@ -59,6 +59,8 @@ router.post('/issues', function(req, res, next) {
     return repo.getRemote("origin");
   }).then(function(remote){
     return remote.push([REFS + ":" + REFS]);
+  }).catch(function(err){
+    console.error(err);
   }).done(function(){
     console.log("Push OK");
 
