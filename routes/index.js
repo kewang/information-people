@@ -8,10 +8,12 @@ var content;
 var repo;
 var head;
 var oid;
+var BRANCH_NAME = "gh-pages";
+var REFS = "refs/heads/" + BRANCH_NAME;
 
 router.post('/issues', function(req, res, next) {
   Git.Clone("https://" + GITHUB_TOKEN + ":x-oauth-basic@github.com/kewang/information-people", "./tmp", {
-    checkoutBranch: "gh-pages"
+    checkoutBranch: BRANCH_NAME
   }).then(function(repoResult){
     repo = repoResult;
 
@@ -47,13 +49,9 @@ router.post('/issues', function(req, res, next) {
   }).then(function(commitId){
     console.log("New Commit: " + commitId);
 
-    var remote = repo.getRemote("origin");
-
-    // var remote = Git.Remote.create(repo, "origin", "https://" + GITHUB_TOKEN + ":x-oauth-basic@github.com/kewang/information-people");
-
-    console.log("remote: " + remote);
-
-    return remote.push(["refs/heads/master:refs/heads/master"]);
+    return repo.getRemote("origin");
+  }).then(function(remote){
+    return remote.push([REFS + ":" + REFS]);
   }).done(function(){
     console.log("Push OK");
 
