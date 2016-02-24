@@ -32,3 +32,8 @@ or
 ```
 git clone https://<token>:x-oauth-basic@github.com/owner/repo.git
 ```
+
+## Buildpacks
+
+* https://github.com/ddollar/heroku-buildpack-multi
+* https://github.com/ddollar/heroku-buildpack-apt
