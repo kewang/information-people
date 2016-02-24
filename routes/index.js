@@ -4,12 +4,11 @@ var fs = require('fs');
 var router = express.Router();
 var GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 var FILE_NAME = "index.htm";
-var content;
+var BRANCH_NAME = "gh-pages";
+var REFS = "refs/heads/" + BRANCH_NAME;
 var repo;
 var head;
 var oid;
-var BRANCH_NAME = "gh-pages";
-var REFS = "refs/heads/" + BRANCH_NAME;
 
 router.post('/issues', function(req, res, next) {
   Git.Clone("https://" + GITHUB_TOKEN + ":x-oauth-basic@github.com/kewang/information-people", "./tmp", {
@@ -22,6 +21,7 @@ router.post('/issues', function(req, res, next) {
     return repo.getHeadCommit();
   }).then(function(headResult){
     head = headResult;
+    
     console.log("getEntry");
 
     return head.getEntry(FILE_NAME);
@@ -30,7 +30,9 @@ router.post('/issues', function(req, res, next) {
 
     return entry.getBlob();
   }).then(function(blob){
-    content = "DEF" + String(blob) + "ABC";
+    var content = String(blob);
+
+    addPeople(content, req.body);
 
     fs.writeFileSync("./tmp/" + FILE_NAME, content);
 
@@ -43,7 +45,7 @@ router.post('/issues', function(req, res, next) {
   }).then(function(oidResult){
     oid = oidResult;
 
-    var author = Git.Signature.now("kewang", "cpckewang@gmail.com");
+    var author = Git.Signature.now("information-people", "cpckewang@gmail.com");
 
     return repo.createCommit("HEAD", author, author, "Add test", oid, [head]);
   }).then(function(commitId){
@@ -55,8 +57,15 @@ router.post('/issues', function(req, res, next) {
   }).done(function(){
     console.log("Push OK");
 
-    return res.json(content);
+    return res.json({
+      result: "OK"
+    });
   });
 });
+
+function addPeople(content, body){
+  console.log("CONTENT: " + content);
+  console.log("BODY: " + body);
+}
 
 module.exports = router;
