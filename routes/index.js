@@ -12,6 +12,7 @@ var REFS = "refs/heads/" + BRANCH_NAME;
 var repo;
 var head;
 var oid;
+var content;
 
 router.post('/issues', function(req, res, next) {
   fse.remove(FOLDER_NAME).then(function(){
@@ -35,9 +36,9 @@ router.post('/issues', function(req, res, next) {
 
     return entry.getBlob();
   }).then(function(blob){
-    var content = String(blob);
+    content = String(blob);
 
-    addPeople(content, req.body);
+    processing(req.body);
 
     fs.writeFileSync(FOLDER_NAME + "/" + FILE_NAME, content);
 
@@ -70,9 +71,27 @@ router.post('/issues', function(req, res, next) {
   });
 });
 
-function addPeople(content, body){
-  console.log("CONTENT: " + content);
-  console.log("BODY: " + body);
+function processing(body){
+  if(body.action !== "labeled"){
+    return;
+  }
+
+  var label_type = body.label.name;
+
+  switch(label_type){
+  case "已新增":
+    addPeople(body);
+
+    break;
+  case "已刪除":
+    removePeople(body);
+
+    break;
+  case "已重複":
+    duplicatePeople(body);
+
+    break;
+  }
 }
 
 module.exports = router;
