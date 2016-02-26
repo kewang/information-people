@@ -64,7 +64,7 @@ router.post('/issues', function(req, res, next) {
   }).catch(function(err){
     console.error(err);
   }).done(function(){
-    console.log("Push OK");
+    console.log(result + " OK");
 
     return res.json({
       result: result
