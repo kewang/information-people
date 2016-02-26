@@ -13,6 +13,7 @@ var repo;
 var head;
 var oid;
 var content;
+var result;
 
 router.post('/issues', function(req, res, next) {
   fse.remove(FOLDER_NAME).then(function(){
@@ -38,7 +39,7 @@ router.post('/issues', function(req, res, next) {
   }).then(function(blob){
     content = String(blob);
 
-    processing(req.body);
+    result = processing(req.body);
 
     fs.writeFileSync(FOLDER_NAME + "/" + FILE_NAME, content);
 
@@ -66,7 +67,7 @@ router.post('/issues', function(req, res, next) {
     console.log("Push OK");
 
     return res.json({
-      result: "OK"
+      result: result
     });
   });
 });
@@ -80,18 +81,38 @@ function processing(body){
 
   switch(label_type){
   case "已新增":
-    addPeople(body);
+    return addPeople(body);
 
     break;
   case "已刪除":
-    removePeople(body);
+    return removePeople(body);
 
     break;
   case "已重複":
-    duplicatePeople(body);
+    return duplicatePeople(body);
 
     break;
   }
+}
+
+function addPeople(body){
+  // add people to content
+  // add comment like "Added"
+  // close issue
+  return "added";
+}
+
+function removePeople(body){
+  // remove people from content
+  // add comment like "Removed"
+  // close issue
+  return "removed";
+}
+
+function duplicatePeople(body){
+  // add comment like "Duplicated"
+  // close issue
+  return "duplicated";
 }
 
 module.exports = router;
