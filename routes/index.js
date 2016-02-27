@@ -25,18 +25,12 @@ router.post('/issues', function(req, res, next) {
   }).then(function(repoResult){
     repo = repoResult;
 
-    console.log("getHeadCommit");
-
     return repo.getHeadCommit();
   }).then(function(headResult){
     head = headResult;
 
-    console.log("getEntry");
-
     return head.getEntry(FILE_NAME);
   }).then(function(entry){
-    console.log("getBlob");
-
     return entry.getBlob();
   }).then(function(blob){
     var content = String(blob);
