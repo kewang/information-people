@@ -120,6 +120,8 @@ function addPeople(body){
   var tree = JSON.stringify(md.parse(body.issue.body));
   var ret = {};
 
+  console.log(tree);
+  
   if(tree[2][0] !== "bulletlist"){
     ret.msg = "added fail";
 
