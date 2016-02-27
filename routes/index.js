@@ -122,6 +122,8 @@ function addPeople(body){
 
   console.log(tree);
   console.log(tree[2][0].trim());
+  console.log("bulletlist" != "bulletlist");
+  console.log("bulletlist" !== "bulletlist");
   console.log(tree[2][0].trim() != "bulletlist");
   console.log(tree[2][0].trim() !== "bulletlist");
 
