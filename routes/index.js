@@ -118,7 +118,7 @@ function addPeople(body){
   // close issue
 
   // parse Markdown to JSON
-  var tree = JSON.stringify(md.parse(body.issue.body));
+  var tree = md.parse(body.issue.body);
   var ret = {};
 
   logger.debug(tree);
