@@ -43,15 +43,7 @@ router.post('/issues', function(req, res, next) {
 
     $ = cheerio.load(content);
 
-    console.log("before");
-    console.log($.html());
-
-    // result = processing(req.body);
-
-    $("#page-list > .panel > .panel-body").add("ABCDEFGH");
-
-    console.log("after");
-    console.log($.html());
+    result = processing(req.body);
 
     fs.writeFileSync(FOLDER_NAME + "/" + FILE_NAME, $.html());
 
@@ -129,7 +121,7 @@ function addPeople(body){
 
   var html = '<div class="fb-page" data-href="https://www.facebook.com/kewang.information/" data-tabs="timeline,events,messages" data-width="500" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/kewang.information/"><a href="https://www.facebook.com/kewang.information/">TEST</a></blockquote></div></div>'
 
-  $("#page-list > .panel > .panel-body").add(html);
+  $("#page-list > .panel > .panel-body").append(html);
 
   return "added";
 }
