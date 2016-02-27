@@ -8,14 +8,6 @@
   "main": "",
   "moduleType": [],
   "license": "MIT",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "assets/libs",
-    "test",
-    "tests"
-  ],
   "dependencies": {
     "bootstrap": "^3.3.6"
   }
