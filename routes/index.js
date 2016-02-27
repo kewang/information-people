@@ -121,17 +121,7 @@ function addPeople(body){
   var tree = md.parse(body.issue.body);
   var ret = {};
 
-  logger.debug(tree);
-  logger.debug(tree[0]);
-  logger.debug(tree[1]);
-  logger.debug(tree[2]);
-  logger.debug(tree[2].trim());
-  logger.debug(tree[2][0]);
-  logger.debug(tree[2][0].trim());
-  logger.debug(tree[2][0].trim() != "bulletlist");
-  logger.debug(tree[2][0].trim() !== "bulletlist");
-
-  if(tree[2][0].trim() !== "bulletlist"){
+  if(tree[2][0] !== "bulletlist"){
     ret.msg = "added fail";
 
     return ret;
