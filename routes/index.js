@@ -3,6 +3,7 @@ var Git = require("nodegit");
 var fs = require('fs');
 var md = require("markdown").markdown;
 var cheerio = require("cheerio");
+var sprintf = require("sprintf-js").sprintf;
 var promisify = require("promisify-node");
 var fse = promisify(require("fs-extra"));
 var router = express.Router();
@@ -33,9 +34,7 @@ router.post('/issues', function(req, res, next) {
   }).then(function(entry){
     return entry.getBlob();
   }).then(function(blob){
-    var content = String(blob);
-
-    $ = cheerio.load(content);
+    $ = cheerio.load(String(blob));
 
     result = processing(req.body);
 
@@ -52,7 +51,13 @@ router.post('/issues', function(req, res, next) {
 
     var author = Git.Signature.now("information-people", "cpckewang@gmail.com");
 
-    return repo.createCommit("HEAD", author, author, "Add test", oid, [head]);
+    if(!result.page){
+      return res.json({
+        result: "Add fail"
+      });
+    }
+
+    return repo.createCommit("HEAD", author, author, sprintf("Add %s success", result.page.name), oid, [head]);
   }).then(function(commitId){
     console.log("New Commit: " + commitId);
 
@@ -76,10 +81,6 @@ function processing(body){
   }
 
   var label_type = body.label.name;
-
-  // parse Markdown to JSON
-  // var tree = JSON.stringify(md.parse(body.issue.body));
-  // console.log(tree);
 
   switch(label_type){
   case "開放討論中":
@@ -113,24 +114,44 @@ function addPeople(body){
   // add comment like "Added"
   // close issue
 
-  var html = '<div class="fb-page" data-href="https://www.facebook.com/kewang.information/" data-tabs="timeline,events,messages" data-width="500" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/kewang.information/"><a href="https://www.facebook.com/kewang.information/">TEST</a></blockquote></div></div>'
+  // parse Markdown to JSON
+  var tree = JSON.stringify(md.parse(body.issue.body));
+  var ret = {};
 
-  $("#page-list > .panel > .panel-body").append(html);
+  if(tree[2][0] !== "bulletlist"){
+    ret.msg = "added fail";
 
-  return "added";
+    return ret;
+  }
+
+  var page = {};
+
+  if(tree[2][1][0] === "listitem" && tree[2][2][0] === "listitem"){
+    page.id = tree[2][1][1].split("Pages ID:")[1].trim();
+    page.name = tree[2][2][1].split("Pages Name:")[1].trim();
+  }
+
+  var html_format = '<div class="fb-page" data-href="https://www.facebook.com/%(id)/" data-tabs="timeline,events,messages" data-width="500" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/%(id)/"><a href="https://www.facebook.com/%(id)/">%(name)</a></blockquote></div></div>';
+
+  $("#page-list > .panel > .panel-body").append(sprintf(html_format, page));
+
+  ret.msg = "added success";
+  ret.page = page;
+
+  return ret;
 }
 
 function removePeople(body){
   // remove people from content
   // add comment like "Removed"
   // close issue
-  return "removed";
+  return "removed success";
 }
 
 function duplicatePeople(body){
   // add comment like "Duplicated"
   // close issue
-  return "duplicated";
+  return "duplicated success";
 }
 
 module.exports = router;

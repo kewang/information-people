@@ -19,6 +19,7 @@
     "morgan": "~1.7.0",
     "nodegit": "^0.11.2",
     "promisify-node": "^0.3.0",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "sprintf-js": "^1.0.3"
   }
 }
