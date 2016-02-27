@@ -38,6 +38,8 @@ router.post('/issues', function(req, res, next) {
 
     result = processing(req.body);
 
+    console.log("test: " + JSON.stringify(result));
+
     fs.writeFileSync(FOLDER_NAME + "/" + FILE_NAME, $.html());
 
     return repo.index();
