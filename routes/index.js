@@ -1,6 +1,7 @@
 var express = require('express');
 var Git = require("nodegit");
 var fs = require('fs');
+var md = require("markdown").markdown;
 var cheerio = require("cheerio");
 var promisify = require("promisify-node");
 var fse = promisify(require("fs-extra"));
@@ -81,7 +82,9 @@ function processing(body){
   }
 
   var label_type = body.label.name;
-  
+  var tree = JSON.stringify(md.parse(body.issue.body));
+
+  console.log(tree);
 
   switch(label_type){
   case "開放討論中":
