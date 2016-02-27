@@ -74,12 +74,16 @@ router.post('/issues', function(req, res, next) {
 
 function processing(body){
   if(body.action !== "labeled"){
-    return;
+    return false;
   }
 
   var label_type = body.label.name;
 
   switch(label_type){
+  case "開放討論中":
+    return discussPeople(body);
+
+    break;
   case "已新增":
     return addPeople(body);
 
@@ -95,8 +99,14 @@ function processing(body){
   }
 }
 
+function discussPeople(body){
+  // add people to pending list
+  // add comment to content
+  return "discussing";
+}
+
 function addPeople(body){
-  // add people to content
+  // add people from pending list to content
   // add comment like "Added"
   // close issue
   return "added";
