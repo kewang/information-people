@@ -82,9 +82,10 @@ function processing(body){
   }
 
   var label_type = body.label.name;
-  var tree = JSON.stringify(md.parse(body.issue.body));
 
-  console.log(tree);
+  // parse Markdown to JSON
+  // var tree = JSON.stringify(md.parse(body.issue.body));
+  // console.log(tree);
 
   switch(label_type){
   case "開放討論中":
@@ -109,6 +110,7 @@ function processing(body){
 function discussPeople(body){
   // add people to pending list
   // add comment to content
+
   return "discussing";
 }
 
@@ -116,6 +118,11 @@ function addPeople(body){
   // add people from pending list to content
   // add comment like "Added"
   // close issue
+
+  var html = '<div class="fb-page" data-href="https://www.facebook.com/kewang.information/" data-tabs="timeline,events,messages" data-width="500" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/kewang.information/"><a href="https://www.facebook.com/kewang.information/">TEST</a></blockquote></div></div>'
+
+  $("#page-list > .panel > .panel-body").add(html);
+
   return "added";
 }
 
