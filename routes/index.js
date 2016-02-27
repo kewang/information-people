@@ -121,12 +121,12 @@ function addPeople(body){
   var ret = {};
 
   console.log(tree);
-  console.log(tree[2][0]);
-  console.log(tree[2][0] !== "bulletlist");
+  console.log(tree[2][0].trim());
+  console.log(tree[2][0].trim() !== "bulletlist");
   console.log(typeof tree[2][0]);
   console.log(typeof "bulletlist");
 
-  if(tree[2][0] !== "bulletlist"){
+  if(tree[2][0].trim() !== "bulletlist"){
     ret.msg = "added fail";
 
     return ret;
