@@ -2,6 +2,7 @@ var express = require('express');
 var Git = require("nodegit");
 var fs = require('fs');
 var md = require("markdown").markdown;
+var logger = require('tracer').colorConsole();
 var cheerio = require("cheerio");
 var sprintf = require("sprintf-js").sprintf;
 var promisify = require("promisify-node");
@@ -120,12 +121,12 @@ function addPeople(body){
   var tree = JSON.stringify(md.parse(body.issue.body));
   var ret = {};
 
-  console.log(tree);
-  console.log(tree[2][0].trim());
-  console.log("bulletlist" != "bulletlist");
-  console.log("bulletlist" !== "bulletlist");
-  console.log(tree[2][0].trim() != "bulletlist");
-  console.log(tree[2][0].trim() !== "bulletlist");
+  logger.debug(tree);
+  logger.debug(tree[2][0].trim());
+  logger.debug("bulletlist" != "bulletlist");
+  logger.debug("bulletlist" !== "bulletlist");
+  logger.debug(tree[2][0].trim() != "bulletlist");
+  logger.debug(tree[2][0].trim() !== "bulletlist");
 
   if(tree[2][0].trim() !== "bulletlist"){
     ret.msg = "added fail";
