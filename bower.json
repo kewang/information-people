@@ -1,0 +1,22 @@
+{
+  "name": "information-people",
+  "homepage": "https://github.com/kewang/information-people",
+  "authors": [
+    "kewang <cpckewang@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "assets/libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6"
+  }
+}
