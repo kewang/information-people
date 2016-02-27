@@ -1,6 +1,7 @@
 var express = require('express');
 var Git = require("nodegit");
 var fs = require('fs');
+var cheerio = require("cheerio");
 var promisify = require("promisify-node");
 var fse = promisify(require("fs-extra"));
 var router = express.Router();
@@ -12,8 +13,8 @@ var REFS = "refs/heads/" + BRANCH_NAME;
 var repo;
 var head;
 var oid;
-var content;
 var result;
+var $;
 
 router.post('/issues', function(req, res, next) {
   fse.remove(FOLDER_NAME).then(function(){
@@ -37,11 +38,13 @@ router.post('/issues', function(req, res, next) {
 
     return entry.getBlob();
   }).then(function(blob){
-    content = String(blob);
+    var content = String(blob);
+
+    $ = cheerio.load(content);
 
     result = processing(req.body);
 
-    fs.writeFileSync(FOLDER_NAME + "/" + FILE_NAME, content);
+    fs.writeFileSync(FOLDER_NAME + "/" + FILE_NAME, $.html());
 
     return repo.index();
   }).then(function(index){
@@ -78,6 +81,7 @@ function processing(body){
   }
 
   var label_type = body.label.name;
+  
 
   switch(label_type){
   case "開放討論中":
