@@ -43,8 +43,14 @@ router.post('/issues', function(req, res, next) {
 
     $ = cheerio.load(content);
 
-    result = processing(req.body);
+    console.log("before");
+    console.log($.html());
 
+    // result = processing(req.body);
+
+    $("#page-list > .panel > .panel-body").add("ABCDEFGH");
+
+    console.log("after");
     console.log($.html());
 
     fs.writeFileSync(FOLDER_NAME + "/" + FILE_NAME, $.html());
