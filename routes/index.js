@@ -45,6 +45,8 @@ router.post('/issues', function(req, res, next) {
 
     result = processing(req.body);
 
+    console.log($.html());
+
     fs.writeFileSync(FOLDER_NAME + "/" + FILE_NAME, $.html());
 
     return repo.index();
