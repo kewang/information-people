@@ -122,10 +122,10 @@ function addPeople(body){
   var ret = {};
 
   logger.debug(tree);
+  logger.debug(tree[2]);
+  logger.debug(tree[2].trim());
   logger.debug(tree[2][0]);
   logger.debug(tree[2][0].trim());
-  logger.debug("bulletlist" != "bulletlist");
-  logger.debug("bulletlist" !== "bulletlist");
   logger.debug(tree[2][0].trim() != "bulletlist");
   logger.debug(tree[2][0].trim() !== "bulletlist");
 
