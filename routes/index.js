@@ -122,6 +122,8 @@ function addPeople(body){
   var ret = {};
 
   logger.debug(tree);
+  logger.debug(tree[0]);
+  logger.debug(tree[1]);
   logger.debug(tree[2]);
   logger.debug(tree[2].trim());
   logger.debug(tree[2][0]);
