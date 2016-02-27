@@ -121,7 +121,9 @@ function addPeople(body){
   var ret = {};
 
   console.log(tree);
-  
+  console.log(tree[2][0]);
+  console.log(tree[2][0] !== "bulletlist");
+
   if(tree[2][0] !== "bulletlist"){
     ret.msg = "added fail";
 
