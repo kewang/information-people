@@ -40,8 +40,6 @@ router.post('/issues', function(req, res, next) {
 
     result = processing(req.body);
 
-    console.log("test: " + JSON.stringify(result));
-
     fs.writeFileSync(FOLDER_NAME + "/" + FILE_NAME, $.html());
 
     return repo.index();
@@ -139,7 +137,7 @@ function addPeople(body){
 
   $("#page-list > .panel > .panel-body").append(sprintf(HTML_FORMAT, page));
 
-  console.log($("#pages-script").html());
+  logger.debug($("#pages-script").html());
 
   // $("#pages-script").append("var pages = ").append();
 
