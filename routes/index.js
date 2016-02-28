@@ -1,3 +1,9 @@
+var GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+var FILE_NAME = "index.htm";
+var FOLDER_NAME = "./tmp";
+var BRANCH_NAME = "gh-pages";
+var REFS = "refs/heads/" + BRANCH_NAME;
+
 var express = require('express');
 var Git = require("nodegit");
 var fs = require('fs');
@@ -8,11 +14,6 @@ var sprintf = require("sprintf-js").sprintf;
 var promisify = require("promisify-node");
 var fse = promisify(require("fs-extra"));
 var router = express.Router();
-var GITHUB_TOKEN = process.env.GITHUB_TOKEN;
-var FILE_NAME = "index.htm";
-var FOLDER_NAME = "./tmp";
-var BRANCH_NAME = "gh-pages";
-var REFS = "refs/heads/" + BRANCH_NAME;
 var repo;
 var head;
 var oid;
@@ -134,9 +135,13 @@ function addPeople(body){
     page.name = tree[2][2][1].split("Pages Name:")[1].trim();
   }
 
-  var html_format = '<div class="fb-page" data-href="https://www.facebook.com/%(id)s/" data-tabs="timeline,events,messages" data-width="500" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/%(id)s/"><a href="https://www.facebook.com/%(id)s/">%(name)s</a></blockquote></div></div>';
+  var HTML_FORMAT = '<div class="fb-page" data-href="https://www.facebook.com/%(id)s/" data-tabs="timeline,events,messages" data-width="500" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/%(id)s/"><a href="https://www.facebook.com/%(id)s/">%(name)s</a></blockquote></div></div>';
 
-  $("#page-list > .panel > .panel-body").append(sprintf(html_format, page));
+  $("#page-list > .panel > .panel-body").append(sprintf(HTML_FORMAT, page));
+
+  console.log($("#pages-script").html());
+
+  // $("#pages-script").append("var pages = ").append();
 
   ret.msg = "added success";
   ret.page = page;
