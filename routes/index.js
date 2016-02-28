@@ -139,6 +139,15 @@ function addPeople(body){
 
   var script = $("#pages-script").html().trim().replace("var pages = ", "");
 
+  logger.debug(typeof script);
+  logger.debug(script);
+
+  script.push({
+    id: "SITCONtw",
+    name: "SITCON 學生計算機年會"
+  });
+
+  logger.debug(typeof script);
   logger.debug(script);
 
   $("#pages-script").html("var pages = " + script);
