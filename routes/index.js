@@ -137,9 +137,13 @@ function addPeople(body){
 
   $("#page-list > .panel > .panel-body").append(sprintf(HTML_FORMAT, page));
 
-  logger.debug($("#pages-script").html());
+  var script = $("#pages-script").html().trim().replace("var pages = ", "");
 
-  // $("#pages-script").append("var pages = ").append();
+  logger.debug(script);
+
+  $("#pages-script").html("var pages = " + script);
+
+  logger.debug($("#pages-script").html());
 
   ret.msg = "added success";
   ret.page = page;
