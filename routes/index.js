@@ -139,7 +139,7 @@ function addPeople(body){
 
   var script = $("#pages-script").html().trim();
 
-  script = JSON.parse(script);
+  script = eval(script);
 
   logger.debug(JSON.parse(script));
   logger.debug(typeof script);
