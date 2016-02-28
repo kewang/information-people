@@ -137,24 +137,18 @@ function addPeople(body){
 
   $("#page-list > .panel > .panel-body").append(sprintf(HTML_FORMAT, page));
 
-  logger.debug($("#pages-script").html());
-  
   var script = $("#pages-script").html().trim().replace("var pages = ", "").replace(";", "");
 
   script = eval(script);
-
-  logger.debug(typeof script);
-  logger.debug(script);
 
   script.push({
     id: "SITCONtw",
     name: "SITCON 學生計算機年會"
   });
 
-  logger.debug(typeof script);
   logger.debug(script);
 
-  $("#pages-script").html("var pages = " + script + ";");
+  $("#pages-script").html("var pages = " + JSON.stringify(script) + ";");
 
   logger.debug($("#pages-script").html());
 
