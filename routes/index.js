@@ -139,6 +139,9 @@ function addPeople(body){
 
   var script = $("#pages-script").html().trim().replace("var pages = ", "");
 
+  script = JSON.parse(script);
+  
+  logger.debug(JSON.parse(script));
   logger.debug(typeof script);
   logger.debug(script);
 
