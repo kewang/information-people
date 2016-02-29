@@ -137,7 +137,16 @@ function addPeople(body){
 
   $("#page-list > .panel > .panel-body").append(sprintf(HTML_FORMAT, page));
 
-  var script = $("#pages-script").html().trim().replace("var pages = ", "").replace(";", "");
+  var script;
+
+  script = $("#pages-script").html().trim().replace("var pages = ", "").replace(";", "");
+  test1(script);
+
+  script = $("#pages-script").html().trim().replace("var pages = ", "").replace(";", "");
+  test2(script);
+
+  script = $("#pages-script").html().trim().replace("var pages = ", "").replace(";", "");
+  test3(script);
 
   logger.debug(script);
 
@@ -181,6 +190,36 @@ function duplicatePeople(body){
   // add comment like "Duplicated"
   // close issue
   return "duplicated success";
+}
+
+function test1(script){
+  try{
+    script = eval(script);
+
+    logger.debug(script);
+  }catch(e){
+    logger.error(e);
+  }
+}
+
+function test2(script){
+  try{
+    script = JSON.stringify(script);
+
+    logger.debug(script);
+  }catch(e){
+    logger.error(e);
+  }
+}
+
+function test3(script){
+  try{
+    script = JSON.parse(script);
+
+    logger.debug(script);
+  }catch(e){
+    logger.error(e);
+  }
 }
 
 module.exports = router;
