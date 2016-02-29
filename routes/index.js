@@ -140,38 +140,32 @@ function addPeople(body){
   var script;
 
   script = $("#pages-script").html().trim().replace("var pages = ", "").replace(";", "");
-  test1(script);
+  script = test1(script);
 
   script = $("#pages-script").html().trim().replace("var pages = ", "").replace(";", "");
-  test2(script);
+  script = test2(script);
 
   script = $("#pages-script").html().trim().replace("var pages = ", "").replace(";", "");
-  test3(script);
+  script = test3(script);
 
-  logger.debug(script);
+  // script.push({
+  //   id: "SITCONtw",
+  //   name: "SITCON 學生計算機年會"
+  // });
 
-  // script = eval(script);
+  // logger.debug("test2");
 
-  logger.debug("test6");
+  // logger.debug(script);
 
-  script.push({
-    id: "SITCONtw",
-    name: "SITCON 學生計算機年會"
-  });
+  // logger.debug("test3");
 
-  logger.debug("test2");
+  // $("#pages-script").html("var pages = " + JSON.stringify(script) + ";");
 
-  logger.debug(script);
+  // logger.debug("test4");
 
-  logger.debug("test3");
+  // logger.debug($("#pages-script").html());
 
-  $("#pages-script").html("var pages = " + JSON.stringify(script) + ";");
-
-  logger.debug("test4");
-
-  logger.debug($("#pages-script").html());
-
-  logger.debug("test5");
+  // logger.debug("test5");
 
   ret.msg = "added success";
   ret.page = page;
@@ -197,9 +191,18 @@ function test1(script){
     script = eval(script);
 
     logger.debug(script);
+
+    script.push({
+      id: "SITCONtw",
+      name: "SITCON 學生計算機年會"
+    });
+
+    logger.debug(script);
   }catch(e){
     logger.error(e);
   }
+
+  return script;
 }
 
 function test2(script){
@@ -207,9 +210,18 @@ function test2(script){
     script = JSON.stringify(script);
 
     logger.debug(script);
+
+    script.push({
+      id: "SITCONtw",
+      name: "SITCON 學生計算機年會"
+    });
+
+    logger.debug(script);
   }catch(e){
     logger.error(e);
   }
+
+  return script;
 }
 
 function test3(script){
@@ -217,9 +229,18 @@ function test3(script){
     script = JSON.parse(script);
 
     logger.debug(script);
+
+    script.push({
+      id: "SITCONtw",
+      name: "SITCON 學生計算機年會"
+    });
+
+    logger.debug(script);
   }catch(e){
     logger.error(e);
   }
+
+  return script;
 }
 
 module.exports = router;
