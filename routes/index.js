@@ -142,19 +142,19 @@ function addPeople(body){
   script = $("#pages-script").html().trim().replace("var pages = ", "").replace(";", "");
   script = test1(script);
 
-  script = $("#pages-script").html().trim().replace("var pages = ", "").replace(";", "");
-  script = test2(script);
+  // script = $("#pages-script").html().trim().replace("var pages = ", "").replace(";", "");
+  // script = test2(script);
 
-  script = $("#pages-script").html().trim().replace("var pages = ", "").replace(";", "");
-  script = test3(script);
+  // script = $("#pages-script").html().trim().replace("var pages = ", "").replace(";", "");
+  // script = test3(script);
 
-  script = $("#pages-script").html().trim().replace("var pages = ", "").replace(";", "");
-  script = test4(script);
+  // script = $("#pages-script").html().trim().replace("var pages = ", "").replace(";", "");
+  // script = test4(script);
 
-  script = test5(script);
-  script = test6(script);
-  script = test7(script);
-  script = test8(script);
+  // script = test5(script);
+  // script = test6(script);
+  // script = test7(script);
+  // script = test8(script);
 
   // script.push({
   //   id: "SITCONtw",
@@ -167,13 +167,13 @@ function addPeople(body){
 
   // logger.debug("test3");
 
-  // $("#pages-script").html("var pages = " + JSON.stringify(script) + ";");
+  $("#pages-script").html("var pages = " + script + ";");
 
-  // logger.debug("test4");
+  logger.debug($("#pages-script").html());
 
-  // logger.debug($("#pages-script").html());
+  $("#pages-script").html("var pages = " + JSON.stringify(script) + ";");
 
-  // logger.debug("test5");
+  logger.debug($("#pages-script").html());
 
   ret.msg = "added success";
   // ret.page = page;
