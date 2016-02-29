@@ -141,8 +141,6 @@ function addPeople(body){
 
   $("#pages-script").html("var pages = " + JSON.stringify(script) + ";");
 
-  logger.debug($("#pages-script").html());
-
   ret.msg = "added success";
   ret.page = page;
 
