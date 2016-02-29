@@ -141,7 +141,11 @@ function addPeople(body){
 
   logger.debug("test1");
 
+  logger.debug(script);
+
   script = eval(script);
+
+  logger.debug("test6");
 
   script.push({
     id: "SITCONtw",
