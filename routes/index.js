@@ -133,18 +133,11 @@ function addPeople(body){
     page.name = tree[2][2][1].split("Pages Name:")[1].trim();
   }
 
-  var HTML_FORMAT = '<div class="fb-page" data-href="https://www.facebook.com/%(id)s/" data-tabs="timeline,events,messages" data-width="500" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/%(id)s/"><a href="https://www.facebook.com/%(id)s/">%(name)s</a></blockquote></div></div>';
-
-  $("#page-list > .panel > .panel-body").append(sprintf(HTML_FORMAT, page));
-
   var script = $("#pages-script").html().trim().replace("var pages = ", "").replace(";", "");
 
   script = eval(script);
 
-  script.push({
-    id: "SITCONtw",
-    name: "SITCON 學生計算機年會"
-  });
+  script.push(page);
 
   $("#pages-script").html("var pages = " + JSON.stringify(script) + ";");
 
