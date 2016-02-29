@@ -151,6 +151,11 @@ function addPeople(body){
   script = $("#pages-script").html().trim().replace("var pages = ", "").replace(";", "");
   script = test4(script);
 
+  script = test5(script);
+  script = test6(script);
+  script = test7(script);
+  script = test8(script);
+
   // script.push({
   //   id: "SITCONtw",
   //   name: "SITCON 學生計算機年會"
@@ -259,6 +264,104 @@ function test4(script){
   try{
     logger.debug(typeof script);
     logger.debug(script);
+
+    script.push({
+      id: "SITCONtw",
+      name: "SITCON 學生計算機年會"
+    });
+
+    logger.debug(script);
+  }catch(e){
+    logger.error(e);
+  }
+
+  return script;
+}
+
+function test4(script){
+  try{
+    logger.debug(typeof script);
+    logger.debug(script);
+
+    script.push({
+      id: "SITCONtw",
+      name: "SITCON 學生計算機年會"
+    });
+
+    logger.debug(script);
+  }catch(e){
+    logger.error(e);
+  }
+
+  return script;
+}
+
+function test5(script){
+  script = '[{"id": "cyberbuzz","name": "Inside 硬塞的網路趨勢觀察"}, {"id": "kewang.information","name": "Kewang 的資訊進化論"}, {"id": "c9s.opensource","name": "C9S 開源電台"}]';
+
+  try{
+    logger.debug(typeof script);
+    logger.debug(script);
+
+    script.push({
+      id: "SITCONtw",
+      name: "SITCON 學生計算機年會"
+    });
+
+    logger.debug(script);
+  }catch(e){
+    logger.error(e);
+  }
+
+  return script;
+}
+
+function test6(script){
+  script = '[{"id": "cyberbuzz","name": "Inside 硬塞的網路趨勢觀察"}, {"id": "kewang.information","name": "Kewang 的資訊進化論"}, {"id": "c9s.opensource","name": "C9S 開源電台"}]';
+
+  try{
+    logger.debug(typeof script);
+    logger.debug(eval(script));
+
+    script.push({
+      id: "SITCONtw",
+      name: "SITCON 學生計算機年會"
+    });
+
+    logger.debug(script);
+  }catch(e){
+    logger.error(e);
+  }
+
+  return script;
+}
+
+function test7(script){
+  script = '[{"id": "cyberbuzz","name": "Inside 硬塞的網路趨勢觀察"}, {"id": "kewang.information","name": "Kewang 的資訊進化論"}, {"id": "c9s.opensource","name": "C9S 開源電台"}]';
+
+  try{
+    logger.debug(typeof script);
+    logger.debug(JSON.stringify(script));
+
+    script.push({
+      id: "SITCONtw",
+      name: "SITCON 學生計算機年會"
+    });
+
+    logger.debug(script);
+  }catch(e){
+    logger.error(e);
+  }
+
+  return script;
+}
+
+function test8(script){
+  script = '[{"id": "cyberbuzz","name": "Inside 硬塞的網路趨勢觀察"}, {"id": "kewang.information","name": "Kewang 的資訊進化論"}, {"id": "c9s.opensource","name": "C9S 開源電台"}]';
+
+  try{
+    logger.debug(typeof script);
+    logger.debug(JSON.parse(script));
 
     script.push({
       id: "SITCONtw",
