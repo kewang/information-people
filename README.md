@@ -2,8 +2,7 @@
 
 ## Add people
 
-                   trigger heroku
-github open issue ---------------> transform payload and rewrite gh-pages html (git push to gh-pages)
+github open issue -----(trigger heroku)-------> transform payload and rewrite gh-pages html (git push to gh-pages)
 
 ## Using OAuth with Git
 
@@ -42,3 +41,7 @@ heroku buildpacks:set https://github.com/ddollar/heroku-buildpack-multi.git
 
 * http://mirrors.kernel.org/ubuntu/pool/main/g/gcc-4.9/gcc-4.9_4.9.2-10ubuntu13_amd64.deb
 * http://mirrors.kernel.org/ubuntu/pool/main/g/gcc-4.9/libstdc%2b%2b6_4.9.2-10ubuntu13_amd64.deb
+
+## Pinterest style
+
+* http://cssdeck.com/labs/css-only-pinterest-style-columns-layout
