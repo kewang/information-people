@@ -139,11 +139,9 @@ function addPeople(body){
 
   var script = $("#pages-script").html().trim().replace("var pages = ", "").replace(";", "");
 
-  logger.debug("test1");
-
   logger.debug(script);
 
-  script = eval(script);
+  // script = eval(script);
 
   logger.debug("test6");
 
