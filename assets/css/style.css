@@ -11,6 +11,7 @@
 }
 
 .pin {
+  width: 300px !important;
   display: inline-block;
   background: #FEFEFE;
   border: 2px solid #FAFAFA;
