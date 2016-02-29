@@ -139,6 +139,8 @@ function addPeople(body){
 
   var script = $("#pages-script").html().trim().replace("var pages = ", "").replace(";", "");
 
+  logger.debug("test1");
+
   script = eval(script);
 
   script.push({
@@ -146,11 +148,19 @@ function addPeople(body){
     name: "SITCON 學生計算機年會"
   });
 
+  logger.debug("test2");
+
   logger.debug(script);
+
+  logger.debug("test3");
 
   $("#pages-script").html("var pages = " + JSON.stringify(script) + ";");
 
+  logger.debug("test4");
+
   logger.debug($("#pages-script").html());
+
+  logger.debug("test5");
 
   ret.msg = "added success";
   ret.page = page;
