@@ -191,8 +191,11 @@ function duplicatePeople(body){
 
 function test1(script){
   try{
+    logger.debug(typeof script);
+
     script = eval(script);
 
+    logger.debug(typeof script);
     logger.debug(script);
 
     script.push({
@@ -210,8 +213,11 @@ function test1(script){
 
 function test2(script){
   try{
+    logger.debug(typeof script);
+
     script = JSON.stringify(script);
 
+    logger.debug(typeof script);
     logger.debug(script);
 
     script.push({
@@ -229,8 +235,11 @@ function test2(script){
 
 function test3(script){
   try{
+    logger.debug(typeof script);
+
     script = JSON.parse(script);
 
+    logger.debug(typeof script);
     logger.debug(script);
 
     script.push({
@@ -248,6 +257,7 @@ function test3(script){
 
 function test4(script){
   try{
+    logger.debug(typeof script);
     logger.debug(script);
 
     script.push({
