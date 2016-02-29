@@ -148,6 +148,9 @@ function addPeople(body){
   script = $("#pages-script").html().trim().replace("var pages = ", "").replace(";", "");
   script = test3(script);
 
+  script = $("#pages-script").html().trim().replace("var pages = ", "").replace(";", "");
+  script = test4(script);
+
   // script.push({
   //   id: "SITCONtw",
   //   name: "SITCON 學生計算機年會"
@@ -228,6 +231,23 @@ function test3(script){
   try{
     script = JSON.parse(script);
 
+    logger.debug(script);
+
+    script.push({
+      id: "SITCONtw",
+      name: "SITCON 學生計算機年會"
+    });
+
+    logger.debug(script);
+  }catch(e){
+    logger.error(e);
+  }
+
+  return script;
+}
+
+function test4(script){
+  try{
     logger.debug(script);
 
     script.push({
