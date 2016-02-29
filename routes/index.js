@@ -176,7 +176,7 @@ function addPeople(body){
   // logger.debug("test5");
 
   ret.msg = "added success";
-  ret.page = page;
+  // ret.page = page;
 
   return ret;
 }
