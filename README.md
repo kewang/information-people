@@ -45,3 +45,10 @@ heroku buildpacks:set https://github.com/ddollar/heroku-buildpack-multi.git
 ## Pinterest style
 
 * http://cssdeck.com/labs/css-only-pinterest-style-columns-layout
+
+## Flow
+
+### Add label
+
+1. If `ADD`, retrieve HTML and check it is duplicate. If `true`, add 'DUPLICATE' and close it, otherwise add to pages and close it.
+2. If 'DELETE', retrieve HTML and check it is present. If `true`, add 'DELETE' and remove from pages and close it.
