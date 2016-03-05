@@ -142,7 +142,7 @@ function addPeople(body){
     return o.id === page.id;
   });
 
-  if(!found){
+  if(found){
     ret.msg = "duplicated";
 
     return ret;
