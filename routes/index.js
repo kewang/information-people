@@ -135,11 +135,11 @@ function addPeople(body){
     page.name = tree[2][2][1].split("Pages Name:")[1].trim();
   }
 
-  var script = transformPageScript($("#pages-script"));
+  var pages = transformScriptToPages($("#pages-script"));
 
-  script.push(page);
+  pages.push(page);
 
-  $("#pages-script").html("var pages = " + JSON.stringify(script) + ";");
+  $("#pages-script").html("var pages = " + JSON.stringify(pages) + ";");
 
   ret.msg = "added success";
   ret.page = page;
@@ -147,7 +147,7 @@ function addPeople(body){
   return ret;
 }
 
-function transformPageScript(script){
+function transformScriptToPages(script){
   return eval(script.html().trim().replace("var pages = ", "").replace(";", ""));
 }
 
