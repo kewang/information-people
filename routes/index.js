@@ -4,6 +4,7 @@ var FOLDER_NAME = "./tmp";
 var BRANCH_NAME = "gh-pages";
 var REFS = "refs/heads/" + BRANCH_NAME;
 
+var _ = require('lodash');
 var express = require('express');
 var Git = require("nodegit");
 var fs = require('fs');
@@ -136,6 +137,16 @@ function addPeople(body){
   }
 
   var pages = transformScriptToPages($("#pages-script"));
+
+  var found = _.find(pages, function(o){
+    return o.id === page.id;
+  });
+
+  if(!found){
+    ret.msg = "duplicated";
+
+    return ret;
+  }
 
   pages.push(page);
 
