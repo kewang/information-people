@@ -135,9 +135,7 @@ function addPeople(body){
     page.name = tree[2][2][1].split("Pages Name:")[1].trim();
   }
 
-  var script = $("#pages-script").html().trim().replace("var pages = ", "").replace(";", "");
-
-  script = eval(script);
+  var script = transformPageScript($("#pages-script"));
 
   script.push(page);
 
@@ -147,6 +145,10 @@ function addPeople(body){
   ret.page = page;
 
   return ret;
+}
+
+function transformPageScript(script){
+  return eval(script.html().trim().replace("var pages = ", "").replace(";", ""));
 }
 
 function removePeople(body){
