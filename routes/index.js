@@ -68,15 +68,15 @@ router.post('/issues', function(req, res, next) {
 
     return repo.createCommit("HEAD", author, author, sprintf("Add %s success", result.page.name), oid, [head]);
   }).then(function(commitId){
-    console.log("New Commit: " + commitId);
+    logger.log("New Commit: " + commitId);
 
     return repo.getRemote("origin");
   }).then(function(remote){
     return remote.push([REFS + ":" + REFS]);
   }).catch(function(err){
-    console.error(err);
+    logger.error(err);
   }).done(function(){
-    console.log(result + " OK");
+    logger.log(result + " OK");
 
     return res.json({
       result: result
