@@ -21,6 +21,12 @@ var result;
 var $;
 
 router.post('/issues', function(req, res, next) {
+  if(req.body.action !== "labeled"){
+    return res.json({
+      result: "Not a labeled action."
+    });
+  }
+
   fse.remove(FOLDER_NAME).then(function(){
     return Git.Clone("https://" + GITHUB_TOKEN + ":x-oauth-basic@github.com/kewang/information-people", FOLDER_NAME, {
       checkoutBranch: BRANCH_NAME
@@ -78,10 +84,6 @@ router.post('/issues', function(req, res, next) {
 });
 
 function processing(body){
-  if(body.action !== "labeled"){
-    return false;
-  }
-
   var label_type = body.label.name;
 
   switch(label_type){
