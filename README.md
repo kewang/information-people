@@ -2,7 +2,7 @@
 
 ## Add people
 
-github open issue -----(trigger heroku)-------> transform payload and rewrite gh-pages html (git push to gh-pages)
+github open issue -----(use webhook to trigger heroku)-------> transform payload and rewrite gh-pages html (git push to gh-pages)
 
 ## Using OAuth with Git
 
